@@ -11,6 +11,9 @@
       "compileOptions": {
         "systemIncludes": [
           "fmt/include/"
+        ],
+        "CppFlags": [
+          "-DFMT_HEADER_ONLY"
         ]
       }
     }
