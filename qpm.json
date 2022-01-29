@@ -12,7 +12,7 @@
         "systemIncludes": [
           "fmt/include/"
         ],
-        "CppFlags": [
+        "cppFlags": [
           "-DFMT_HEADER_ONLY"
         ]
       }
