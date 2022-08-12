@@ -8,6 +8,7 @@
     "url": "https://github.com/Fernthedev/fmt-qpm",
     "additionalData": {
       "headersOnly": true,
+      "branchName": "version-v9.0.0",
       "compileOptions": {
         "systemIncludes": [
           "fmt/include/"
