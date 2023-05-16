@@ -58,10 +58,9 @@ jobs:
         workflow_token: ${{secrets.GITHUB_TOKEN}}
 
         restore: true # will run restore on download
-        cache: true #will cache dependencies
+        cache: false #will cache dependencies
 
         publish: true
-        eager_publish: true
         publish_token: ${{secrets.QPM_TOKEN}}
 
         version: ${{ steps.get_tag_version.outputs.VERSION }}
