@@ -61,6 +61,7 @@ jobs:
         cache: true #will cache dependencies
 
         publish: true
+        publish_eager: true
         publish_token: ${{secrets.QPM_TOKEN}}
 
         version: ${{ steps.get_tag_version.outputs.VERSION }}
