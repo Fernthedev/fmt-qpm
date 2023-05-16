@@ -1,0 +1,1 @@
+{"config":{"sharedDir":"fmt/include","dependenciesDir":"extern","info":{"name":"fmt","id":"fmt","version":"10.0.0","url":"https://github.com/Fernthedev/fmt-qpm","additionalData":{"headersOnly":true,"compileOptions":{"systemIncludes":["fmt/include/"],"cppFlags":["-DFMT_HEADER_ONLY"]},"branchName":"version/v10_0_0"}},"dependencies":[],"workspace":null},"restoredDependencies":[]}
