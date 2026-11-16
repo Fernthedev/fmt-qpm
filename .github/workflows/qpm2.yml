@@ -19,13 +19,10 @@ jobs:
           submodules: recursive
 
       - uses: Fernthedev/qpm-action@v2
+        with:
+          publish: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && 'late' || '' }}
+          publish_token: ${{ secrets.QPM_TOKEN }}
 
       - name: Build
+        if: ${{ !(github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) }}
         run: qpm2 qpkg
-
-      - name: Publish
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-        uses: Fernthedev/qpm-action@v2
-        with:
-          publish: now
-          publish_token: ${{ secrets.QPM_TOKEN }}
