@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.Package/refs/heads/main/qpm.shared.schema.json",
+  "config": {
+    "configVersion": "2.0.0",
+    "id": "fmt",
+    "version": "12.2.1",
+    "additionalData": {
+      "description": "Header-only {fmt} formatting library for C++",
+      "author": "Victor Zverovich and {fmt} contributors",
+      "license": "MIT",
+      "url": "https://github.com/Fernthedev/fmt-qpm"
+    },
+    "workspace": {
+      "scripts": {},
+      "outBinaries": [],
+      "cmake": false
+    },
+    "dependencies": {},
+    "devDependencies": {},
+    "dependenciesDirectory": "extern",
+    "sharedDirectory": "fmt/include",
+    "compileOptions": {
+      "systemIncludes": [
+        ""
+      ],
+      "cppFlags": [
+        "-DFMT_HEADER_ONLY"
+      ]
+    }
+  },
+  "restoredDependencies": {},
+  "env": {}
+}
