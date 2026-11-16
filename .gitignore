@@ -1,0 +1,21 @@
+/qpm2-export/
+
+# Local build and QPM artifacts
+/build/
+/cmake-build-*/
+/dist/
+/extern/
+/.qpm-cache/
+/.qpm-ci-cache/
+/ndkpath.txt
+/qpm.settings.json
+/toolchain.json
+/extern.cmake
+/compile_commands.json
+/CMakeUserPresets.json
+/*.qpkg
+/*.qpkg.sha256
+/*.qmod
+__pycache__/
+.DS_Store
+Thumbs.db
