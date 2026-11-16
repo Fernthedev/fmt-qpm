@@ -10,9 +10,6 @@ on:
 permissions:
   contents: read
 
-env:
-  QPM_DISABLE_GLOBAL_CONFIG: '1'
-
 jobs:
   qpkg:
     if: github.event_name != 'push' || github.ref_type != 'tag'
@@ -23,9 +20,6 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
-
-      - name: Configure QPM cache
-        run: printf '%s\n' '{"cache":".qpm-ci-cache","symlink":false}' > qpm.settings.json
 
       - name: Set up QPM v2
         uses: Fernthedev/qpm-action@v2
