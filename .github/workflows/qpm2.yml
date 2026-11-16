@@ -1,4 +1,4 @@
-name: QPM v2 CI
+name: Build and publish
 
 on:
   push:
@@ -8,49 +8,24 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  qpkg:
-    if: github.event_name != 'push' || github.ref_type != 'tag'
-    runs-on: ubuntu-24.04
-    timeout-minutes: 35
-    steps: &package_steps
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
           submodules: recursive
 
-      - name: Set up QPM v2
+      - uses: Fernthedev/qpm-action@v2
+
+      - name: Build
+        run: qpm2 qpkg
+
+      - name: Publish
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
         uses: Fernthedev/qpm-action@v2
         with:
-          restore: true
-          cache: false
-          resolve_ndk: false
-          publish: ${{ env.QPM_RELEASE_MODE }}
-          publish_token: ${{ env.QPM_RELEASE_MODE == 'late' && (secrets.QPM_TOKEN || secrets.QPM_KEY) || '' }}
-
-      - name: Create and verify QPKG
-        run: |
-          mkdir -p dist
-          package=$(python -c 'import json; p=json.load(open("qpm2.json")); print("{}-{}.qpkg".format(p["id"], p["version"]))')
-          qpm2 qpkg --offline --no-build "$PWD/dist/$package"
-          unzip -tq "dist/$package"
-          sha256sum "dist/$package" > "dist/$package.sha256"
-
-      - name: Upload QPKG
-        uses: actions/upload-artifact@v4
-        with:
-          name: fmt-qpkg
-          path: dist/
-          if-no-files-found: error
-
-  release:
-    if: github.event_name == 'push' && github.ref_type == 'tag'
-    runs-on: ubuntu-24.04
-    timeout-minutes: 35
-    permissions:
-      contents: write
-    env:
-      QPM_RELEASE_MODE: late
-    steps: *package_steps
+          publish: now
+          publish_token: ${{ secrets.QPM_TOKEN }}
